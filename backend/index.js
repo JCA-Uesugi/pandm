@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 const BooksList = require('./models/modules');
 const Image = require('./models/imageModules');
 const multer = require('multer');
+const { default: axios } = require('axios');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const uploadLocal = multer({ dest: '/uploads' });
 const app = express();
 const dburl = 'mongodb://localhost/mydb';
 
+var jschardet = require('jschardet');
 
 const options = {
   useUnifiedTopology: true,
@@ -41,12 +43,13 @@ app.get('/mydb', function (req, res) {
 app.get('/myup', function(req, res){
   Image.find(function(err, result){
     if(!err){
-      var img = Buffer.from(result[0].file.data, "base64");
+      return res.json(result);
+      /*var img = Buffer.from(result[0].file.data, "base64");
       var images =[img];
       const formatedImages = images.map(buffer => {
        return `<img src = "data:image/*;base64, ${buffer.toString("base64")}"/>`
       }).join("")
-      res.send(formatedImages)
+      res.send(formatedImages)*/
       //res.send(img)
       //return res.json(result)
     }
@@ -69,29 +72,60 @@ app.post('/test', function (req, res) {
 
 //テキストDB登録
 app.post('/data', function (req, res) {
+  console.log(req.body)
   var input = new BooksList({
     name: req.body.data
   });
   input.save(function (err) {
     if (err) throw err;
   });
-  console.log(req.body.data);
+  var notUtf8String =req.body.data;
+  var detectResult = jschardet.detect(notUtf8String);
+  console.log(detectResult);
+
+  console.log(req.body.headers);
 });
 
 //ファイルDB登録
 app.post('/file', upload.single("file"), async function (req, res) {
-  console.log(req.file)
+
+  console.log(req)
   let imageUploadObject = {
+    fileName: req.body.fileName,
     file: {
       data: req.file.buffer,
-      contentType: req.body.header
+      contentType: req.headers['content-type']
     },
-    fileName: req.body.fileName
   };
+  console.log(imageUploadObject)
   const uploadObject = new Image(imageUploadObject);
 
   const uploadProcess = await uploadObject.save();
   console.log("DB_input");
 });
+
+app.post('/download',function(req, res){
+  Image.find(function(err, result){
+    if(!err){
+      // console.log(result[0].file.data)
+      var img = Buffer.from(result[0].file.data, "base64");
+      // console.log(img)
+      return res.json(result);
+      /*
+      var images =[img];
+      const formatedImages = images.map(buffer => {
+       return `<img src = "data:image/*;base64, ${buffer.toString("base64")}"/>`
+      }).join("")
+      res.send(formatedImages)*/
+      //res.send(img)
+      //return res.json(result)
+    }
+    else{
+      return res.status(500).send('getmydata faild')
+    }
+  })
+})
+
+
 
 app.listen(process.env.PORT || 3000);

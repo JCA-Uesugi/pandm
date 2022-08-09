@@ -1,0 +1,14 @@
+<div class="textarea" v-if="isVisible">
+  <label :class="{ required: isRequired }" :style="{width: labelWidth}">
+    {{ label }}
+  </label>
+
+  <textarea
+    v-model="areaValue"
+    :rows="areaRows"
+    :style="{ width: areaWidth }"
+    :disabled="isDisabled"
+    :maxlength="maxLength"
+  >
+  </textarea>
+</div>
