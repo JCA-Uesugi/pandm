@@ -1,0 +1,24 @@
+<div class="radio" v-if="isVisible">
+  <label
+    id="title"
+    :class="{ required: isRequired }"
+    :style="{ width: labelWidth }"
+  >
+    {{ label }}
+  </label>
+  <label
+    class="items"
+    :for="option.index"
+    v-for="option in options"
+    :key="option.index"
+  >
+    <input
+      type="radio"
+      :id="option.index"
+      v-model="radioValue"
+      :value="option"
+      :disabled="isDisabled"
+    />
+    {{ option.value }}
+  </label>
+</div>

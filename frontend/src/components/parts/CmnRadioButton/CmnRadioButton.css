@@ -1,0 +1,18 @@
+div.radio {
+  text-align: left;
+}
+label#title {
+  display: inline-block;
+  text-align: right;
+  padding-right: 5px;
+}
+label.items {
+  display: inline;
+  text-align: left;
+  width: 90px;
+}
+.required::after {
+  content: "*";
+  position: absolute;
+  color: red;
+}
