@@ -7,8 +7,9 @@ const Image = require('./models/imageModules');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+const uploadLocal = multer({ dest: '/uploads' });
 const app = express();
-
+const dburl = 'mongodb://localhost/mydb';
 
 
 const options = {
@@ -17,7 +18,7 @@ const options = {
 };
 
 //DB接続
-mongoose.connect('mongodb://localhost/mydb', options);
+mongoose.connect(dburl, options);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -30,12 +31,31 @@ db.on('open', () => console.log('DB success!'));
 app.get('/mydb', function (req, res) {
   BooksList.find(function (err, result) {
     if (!err) {
+      console.log(result);
       return res.json(result);
     } else {
       return res.status(500).send('postmylist faild')
     }
   });
 });
+app.get('/myup', function(req, res){
+  Image.find(function(err, result){
+    if(!err){
+      var img = Buffer.from(result[0].file.data, "base64");
+      var images =[img];
+      const formatedImages = images.map(buffer => {
+       return `<img src = "data:image/*;base64, ${buffer.toString("base64")}"/>`
+      }).join("")
+      res.send(formatedImages)
+      //res.send(img)
+      //return res.json(result)
+    }
+    else{
+      return res.status(500).send('getmydata faild')
+    }
+  })
+});
+
 
 //テキスト表示通信
 app.post('/test', function (req, res) {
@@ -71,6 +91,7 @@ app.post('/file', upload.single("file"), async function (req, res) {
   const uploadObject = new Image(imageUploadObject);
 
   const uploadProcess = await uploadObject.save();
+  console.log("DB_input");
 });
 
 app.listen(process.env.PORT || 3000);
