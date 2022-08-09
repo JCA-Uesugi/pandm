@@ -1,0 +1,37 @@
+<div class="file" v-if="isVisible">
+  <div class="fileup">
+    <form id="fileElem">
+      <input
+        type="file"
+        id="datafile"
+        name="fileinput"
+        @change="inputFiles"
+        accept="image/*,text/*,application/*"
+        accept-charset="ASCII"
+        enctype="multipart/form-data"
+      />
+    </form>
+  </div>
+  <span v-show="upFiles">
+    <button @click="upLoad(); getFiles()">アップロード</button></span
+  >
+  <div class="uplist" v-show="upFiles">
+    <ul class="up-items" v-for="name in filesName" :key="name.index">
+      <li>{{ name }}</li>
+    </ul>
+  </div>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>ファイル名</th>
+    </tr>
+    <tr v-for="(data, index) in datas" :key="data.index">
+      <td>{{ index +1 }}</td>
+      <td><a :href="downloadUrl" download>{{ data.fileName }}</a></td>
+    </tr>
+  </table>
+  <div v-show="download">
+    <img src="imgUrl" />
+    <a :href="downloadUrl" download>ダウンロード</a>
+  </div>
+</div>

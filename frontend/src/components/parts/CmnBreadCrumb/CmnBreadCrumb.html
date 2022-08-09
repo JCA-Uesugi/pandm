@@ -1,0 +1,13 @@
+<div class="breadcrumb">
+  <div class="breadcrumb-item">
+    <div v-for="content in breadcrumbs" :key="content.index">
+      <div class="items" v-if="content.path">
+        <router-link :to="content.path">
+          <span class="link">{{ content.name }}</span>
+        </router-link>
+        <span class="space">></span>
+      </div>
+      <div class="items" v-else>{{ content.name }}</div>
+    </div>
+  </div>
+</div>

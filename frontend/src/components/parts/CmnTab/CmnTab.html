@@ -1,0 +1,16 @@
+<div class="tab" v-if="isVisible">
+  <ul class="tabs-menu">
+    <li :class="{ active: currentTab === 'Tab1' }" @click="currentTab = 'Tab1'">
+      タブ1
+    </li>
+    <li :class="{ active: currentTab === 'Tab2' }" @click="currentTab = 'Tab2'">
+      タブ2
+    </li>
+    <li :class="{ active: currentTab === 'Tab3' }" @click="currentTab = 'Tab3'">
+      タブ3
+    </li>
+  </ul>
+  <div class="tabs-content">
+    <componet :is="currentTab"></componet>
+  </div>
+</div>

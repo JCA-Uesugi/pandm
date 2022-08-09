@@ -1,0 +1,9 @@
+.items {
+  float: left;
+  padding: 3px;
+}
+.breadcrumb {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+}

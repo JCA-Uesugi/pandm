@@ -1,0 +1,38 @@
+<div class="list" v-if="isVisible">
+  <label class="listLabel" :style="{ width: labelWidth }">{{ label }}</label>
+  <!-- <label>{{ sort_key }}</label> -->
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th
+          v-for="(element, index) in headers"
+          :key="element.index"
+          v-show="true"
+        >
+          <span>
+            {{ element }}
+            <button @click="sortBy(index)" :class="addClass(index)">
+              sort
+            </button>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(option, index) in options" :key="option.id">
+        <th :style="{ textAlign: contentAlign }">{{ index + 1 }}</th>
+        <td
+          :style="{ textAlign: contentAlign }"
+          v-for="item in option"
+          :key="item.index"
+        >
+          <span>{{ item.value }}</span>
+        </td>
+        <td v-if="option.isVisible">
+          <button>{{ buttonContent }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
