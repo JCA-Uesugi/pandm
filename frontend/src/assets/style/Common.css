@@ -1,0 +1,91 @@
+/* 色カスタムプロパティ */
+:root {
+  /* 仮 */
+  --input-border: #dddddd;
+  --text-emphasis: #ff0000;
+}
+
+/*******************************************
+ ボタン
+*******************************************/
+/* テスト用共通ボタン */
+.cmn-btn {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+/* テスト用共通ボタン_グラデーション */
+.cmn-btn.cmn-btn__gradient {
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(orange),
+    to(#fee140)
+  );
+  background-image: -webkit-linear-gradient(left, orange 0%, #fee140 100%);
+  background-image: linear-gradient(to right, orange 0%, #fee140 100%);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cmn-btn.cmn-btn__gradient:hover {
+  -webkit-transform: translate(0, -2px);
+  transform: translate(0, -2px);
+  color: #fff;
+  -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/*******************************************
+ 共通部品
+*******************************************/
+
+.cmn-parts {
+  font-size: 18px;
+  display: flex;
+  margin: 3px;
+}
+
+.cmn-parts-label {
+  display: block;
+  text-align: right;
+  padding: 5px 20px 5px 5px;
+  margin-right: 5px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.cmn-parts-label.required::after {
+  content: "*";
+  position: absolute;
+  color: var(--text-emphasis);
+}
+
+.cmn-parts input[type="text"] {
+  font-size: 18px;
+  border-radius: 3px;
+  border: 2px solid var(--input-border);
+  padding: 10px 15px;
+}

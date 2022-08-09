@@ -1,0 +1,17 @@
+<div class="cmn-parts">
+  <label
+    class="cmn-parts-label"
+    :class="{required: isRequired}"
+    :style="{width: labelWidth}"
+  >
+    <span>{{label}}</span>
+  </label>
+  <input
+    type="text"
+    v-model="textValue"
+    :style="{width: boxWidth, textAlign: textAlign}"
+    :disabled="isDisabled"
+    :maxlength="maxLength"
+    :placeholder="placeholder"
+  />
+</div>

@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from "axios";
 
 //サーバと繋いでいる
 export default () => {
   return axios.create({
-    baseURL: `http://localhost:3000/`
-  })
-}
+    baseURL: `http://localhost:3000/`,
+  });
+};

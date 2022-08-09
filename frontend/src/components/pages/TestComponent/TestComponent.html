@@ -1,0 +1,34 @@
+<div class="test-comp">
+  <div>これはテスト用のコンポーネントです。</div>
+
+  <div>テスト：{{testMsg}}</div>
+  <!-- 名前 -->
+  <cmn-text-box
+    v-model="name"
+    label="お名前"
+    maxLength="100"
+    isRequired="true"
+    labelWidth="10%"
+  ></cmn-text-box>
+
+  <!-- 住所 -->
+  <cmn-text-box
+    v-model="address"
+    label="住所"
+    maxLength="100"
+    labelWidth="10%"
+    placeholder="例：東京都新宿区西新宿2-8-1"
+  ></cmn-text-box>
+
+  <hr />
+  {{$store.state.title}}
+
+  <div class="test-comp__bottom">
+    <button class="cmn-btn cmn-btn__gradient" @click="clearButtonClick">
+      クリア
+    </button>
+    <button class="cmn-btn cmn-btn__gradient" @click="dbSearchButtonClick">
+      DB検索
+    </button>
+  </div>
+</div>
