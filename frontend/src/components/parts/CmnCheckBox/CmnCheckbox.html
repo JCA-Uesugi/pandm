@@ -1,0 +1,23 @@
+<div class="checkbox" v-if="isVisible">
+  <label
+    id="title"
+    :class="{ required: isRequired }"
+    :style="{ width: labelWidth }"
+    >{{ label }}
+  </label>
+  <label
+    :for="option.key"
+    class="items"
+    v-for="option in options"
+    :key="option.index"
+  >
+    <input
+      type="checkbox"
+      :id="option.key"
+      v-model="checkedValue"
+      :value="option"
+      :disabled="isDisabled"
+    />
+    {{ option.value }}
+  </label>
+</div>
