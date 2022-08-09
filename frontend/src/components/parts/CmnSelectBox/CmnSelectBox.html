@@ -1,0 +1,17 @@
+<div class="selectbox" v-if="isVisible">
+  <label :class="{ required: isRequired }" :style="{ width: labelWidth }">
+    {{ label }}
+  </label>
+  <select
+    v-model="selectedValue"
+    :style="{ width: selectWidth }"
+    :disabled="isDisabled"
+    :multiple="isMultiple"
+  >
+    <optgroup>
+      <option v-for="option in options" :value="option" :key="option.index">
+        {{ option.value }}
+      </option>
+    </optgroup>
+  </select>
+</div>

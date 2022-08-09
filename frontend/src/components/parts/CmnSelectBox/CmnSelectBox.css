@@ -1,9 +1,10 @@
-div .textarea {
+div.selectbox {
   text-align: left;
 }
 label {
   display: inline-block;
   text-align: right;
+  vertical-align: top;
   padding-right: 5px;
 }
 .required::after {
