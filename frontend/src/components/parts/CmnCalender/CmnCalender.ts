@@ -4,7 +4,7 @@ import { Prop } from "vue-property-decorator";
 /**
  * 共通カレンダー
  */
-export default class CmnTextBox extends ComponentBase {
+export default class CmnCalender extends ComponentBase {
   /** 親画面から渡された文字列 */
   @Prop()
   private modelValue!: string;

@@ -1,0 +1,15 @@
+<div class="modal" v-if="isVisible">
+  <div id="overlay">
+    <div id="content">
+      <div tabindex="0" @focusin="setEndFocus"></div>
+      <div ref="startFocus" tabindex="0"></div>
+      <p>{{ modalText }}</p>
+      <p>
+        <button @click="closeModal">OK</button>
+        <button @click="closeModal">キャンセル</button>
+        <button @click="closeModal" ref="endFocus">閉じる</button>
+      </p>
+      <div tabindex="0" @focusin="setStartForcus"></div>
+    </div>
+  </div>
+</div>
