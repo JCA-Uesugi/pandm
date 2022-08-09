@@ -1,0 +1,11 @@
+<div class="calender" v-if="isVisible">
+  <label :class="{ required: isRequired }" :style="{ width: labelWidth }">
+    {{ label }}
+  </label>
+  <input
+    type="date"
+    v-model="dateValue"
+    :disabled="isDisabled"
+    :style="{ width: boxWidth }"
+  />
+</div>
