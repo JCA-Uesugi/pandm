@@ -56,7 +56,7 @@ export default class CmnTextBox extends ComponentBase {
   /**
    * setter
    * 入力された文字列を親画面に返却します
-   * @pram newValue 入力文字列
+   * @param newValue 入力文字列
    */
   private set textValue(newValue: string) {
     this.$emit("update:modelValue", newValue);
