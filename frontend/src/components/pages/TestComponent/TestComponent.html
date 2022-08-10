@@ -6,7 +6,7 @@
   <cmn-text-box
     v-model="name"
     label="お名前"
-    maxLength="100"
+    maxLength="20"
     isRequired="true"
     labelWidth="10%"
   ></cmn-text-box>
@@ -27,8 +27,26 @@
     <button class="cmn-btn cmn-btn__gradient" @click="clearButtonClick">
       クリア
     </button>
-    <button class="cmn-btn cmn-btn__gradient" @click="dbSearchButtonClick">
-      DB検索
+    <button class="cmn-btn cmn-btn__gradient" @click="searchButtonClick">
+      検索
     </button>
+    <button class="cmn-btn cmn-btn__gradient" @click="registButtonClick">
+      登録
+    </button>
+  </div>
+
+  <div>
+    <table>
+      <thead>
+        <th>#</th>
+        <th>名前</th>
+      </thead>
+      <tbody>
+        <tr v-for="(data, index) in list">
+          <td>{{index + 1}}</td>
+          <td>{{data.name}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

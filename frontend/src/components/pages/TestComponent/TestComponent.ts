@@ -17,6 +17,8 @@ export default class TestComponent extends ComponentBase {
   /** 住所（画面表示） */
   private address = "";
 
+  private list: TestComponentDto[] = [];
+
   /**
    * DOM未生成時の処理
    */
@@ -42,7 +44,6 @@ export default class TestComponent extends ComponentBase {
   /**
    * クリアボタン押下処理
    *
-   * @param event クリアボタン押下イベント
    */
   private clearButtonClick() {
     this.testMsg = this.commonCheckUtil.isEmpty(this.testMsg) ? "★" : "";
@@ -52,11 +53,10 @@ export default class TestComponent extends ComponentBase {
   }
 
   /**
-   * DB検索ボタン押下処理（同期処理）
+   * 検索ボタン押下処理（同期処理）
    *
-   * @param event DB検索ボタン押下イベント
    */
-  private async dbSearchButtonClick() {
+  private async searchButtonClick() {
     // DB検索
     const param: TestComponentDto = new TestComponentDto();
     param._id = "123";
@@ -70,6 +70,9 @@ export default class TestComponent extends ComponentBase {
       if (data.data && data.data.length > 0) {
         console.log("data._id : " + data.data[0]._id);
         console.log("data.name : " + data.data[0].name);
+
+        // 検索結果セット
+        this.list = data.data;
       } else {
         console.log("データなし");
       }
@@ -79,5 +82,9 @@ export default class TestComponent extends ComponentBase {
     else {
       alert("検索失敗");
     }
+  }
+
+  private async registButtonClick() {
+    //
   }
 }
