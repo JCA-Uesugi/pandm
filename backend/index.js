@@ -118,4 +118,34 @@ app.post("/download", function (req, res) {
   });
 });
 
+/**
+ * GETテスト
+ */
+app.get("/gettest", function (req, res) {
+  console.log("gettest : " + req);
+  BooksList.find(function (err, result) {
+    if (!err) {
+      console.log(result);
+      return res.json(result);
+    } else {
+      return res.status(500).send("postmylist faild");
+    }
+  });
+});
+
+/**
+ * POSTテスト
+ */
+app.post("/posttest", function (req, res) {
+  console.log("posttest : " + req);
+  BooksList.find(function (err, result) {
+    if (!err) {
+      console.log(result);
+      return res.json(result);
+    } else {
+      return res.status(500).send("postmylist faild");
+    }
+  });
+});
+
 app.listen(process.env.PORT || 3000);

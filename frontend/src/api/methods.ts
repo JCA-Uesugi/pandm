@@ -1,6 +1,6 @@
 import Api from "./index";
 import ApiController from "./ApiController";
-import { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import TestComponentDto from "./../components/pages/TestComponent/dto/TestComponentDto";
 export default class Methods {
   // ↓↓仮↓↓
@@ -14,6 +14,44 @@ export default class Methods {
     const data = ApiController.get("mydb");
     return data;
   }
+
+  /**
+   * GETテスト
+   * @param param
+   * @returns
+   */
+  public static gettest(
+    param: TestComponentDto
+  ): Promise<AxiosResponse<TestComponentDto[]>> {
+    // 条件設定
+    const options: AxiosRequestConfig = {
+      params: param,
+    };
+
+    const data = Api().get("/gettest", options);
+    return data;
+  }
+
+  /**
+   * POSTテスト
+   * @param param
+   * @returns
+   */
+  public static posttest(
+    param: TestComponentDto
+  ): Promise<AxiosResponse<TestComponentDto[]>> {
+    // 条件設定
+    const options: AxiosRequestConfig = {
+      params: param,
+    };
+
+    const data = Api().post("/posttest", options);
+    return data;
+  }
+
+  // TODO:PUT
+
+  // TODO:DELETE
 
   /*************************************************************/
 }

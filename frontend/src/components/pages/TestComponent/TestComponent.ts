@@ -1,6 +1,7 @@
 import Methods from "@/api/methods";
 import { Options } from "vue-class-component";
 import ComponentBase from "../../common/ComponentBase";
+import TestComponentDto from "./dto/TestComponentDto";
 import TestComponentParam from "./param/TestComponentParam";
 /**
  * テストコンポーネント
@@ -57,7 +58,11 @@ export default class TestComponent extends ComponentBase {
    */
   private async dbSearchButtonClick() {
     // DB検索
-    const data = await Methods.testGetBooks();
+    const param: TestComponentDto = new TestComponentDto();
+    param._id = "123";
+    param.name = "nihsi";
+    const data = await Methods.posttest(param);
+    // const data = await Methods.testGetBooks();
 
     // 成功時
     if (data && data.status === 200) {

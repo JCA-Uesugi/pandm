@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import Api from "./index";
 /**
  * APIコントローラー
+ * 削除予定
  */
 export default class ApiController {
   /**
